@@ -5,4 +5,5 @@
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/services/UserService.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/dao/DaoUser.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/controllers/UserController.java
+/Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/exceptions/UserNotFoundException.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/entities/Greeting.java
