@@ -1,3 +1,8 @@
-afinal/proyecto/cuatro/grupo/Application.class
 afinal/proyecto/cuatro/grupo/controllers/GreetingController.class
+afinal/proyecto/cuatro/grupo/services/UserService.class
+afinal/proyecto/cuatro/grupo/Application.class
 afinal/proyecto/cuatro/grupo/entities/Greeting.class
+afinal/proyecto/cuatro/grupo/dao/DaoUser.class
+afinal/proyecto/cuatro/grupo/controllers/UserController.class
+afinal/proyecto/cuatro/grupo/services/impl/UserServiceImpl.class
+afinal/proyecto/cuatro/grupo/entities/User.class
