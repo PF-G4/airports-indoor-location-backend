@@ -11,32 +11,26 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import afinal.proyecto.cuatro.grupo.entities.User;
-import afinal.proyecto.cuatro.grupo.exceptions.UserNotFoundException;
 import afinal.proyecto.cuatro.grupo.services.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public void saveOrUpdate(@RequestBody User user) {
 		userService.saveOrUpdate(user);
 	}
-	
+
 	@GetMapping("/{id}")
 	public User findById(@PathVariable(value = "id") Long id) {
-		try {
-			User user = userService.findById(id);
-			return user;
-		} catch (Exception e) {
-			throw new UserNotFoundException("id", id);
-		}
+		return userService.findById(id);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public Iterable<User> findAll() {
 		return userService.findAll();

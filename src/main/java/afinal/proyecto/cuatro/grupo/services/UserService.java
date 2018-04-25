@@ -7,7 +7,7 @@ import afinal.proyecto.cuatro.grupo.entities.User;
 @Service
 public interface UserService {
 	
-	User saveOrUpdate(User user);
+	void saveOrUpdate(User user);
 	
 	User findById(Long id);
 	

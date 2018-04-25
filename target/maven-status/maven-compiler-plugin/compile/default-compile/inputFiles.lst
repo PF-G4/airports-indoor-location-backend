@@ -1,6 +1,9 @@
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/entities/User.java
+/Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/services/util/ServiceUtil.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/Application.java
+/Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/exceptions/UserDuplicateEmailException.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/controllers/GreetingController.java
+/Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/exceptions/UserInvalidEmail.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/services/impl/UserServiceImpl.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/services/UserService.java
 /Users/Globons/Proyectos/java-projects/AirportsIndoorLocationBackend/src/main/java/afinal/proyecto/cuatro/grupo/dao/DaoUser.java
