@@ -22,3 +22,8 @@
 hs_err_pid*
 
 /target/
+
+# IntelliJ IDE
+.idea/
+gs-rest-service.iml
+*.properties
