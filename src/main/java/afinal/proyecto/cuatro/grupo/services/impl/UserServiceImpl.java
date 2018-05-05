@@ -1,5 +1,9 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,7 @@ public class UserServiceImpl extends ServiceUtil implements UserService {
 	public void saveOrUpdate(User user) {
 		if (!isValidEmail(user.getEmail())) throw new UserInvalidEmailException(user.getEmail());
 		try {
+			System.out.println("Entro");
 			daoUser.save(user);
 		} catch (Exception e) {
 			if (isConstraintName("unique_email", e)) throw new UserDuplicateEmailException(user.getEmail());
