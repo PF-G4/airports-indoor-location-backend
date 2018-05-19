@@ -26,4 +26,3 @@ hs_err_pid*
 # IntelliJ IDE
 .idea/
 gs-rest-service.iml
-src/main/resources/application.properties
