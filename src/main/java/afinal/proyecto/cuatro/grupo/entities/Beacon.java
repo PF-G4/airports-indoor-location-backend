@@ -21,14 +21,18 @@ public class Beacon {
 	@NotNull
 	private String zone;
 
+	@OneToOne(mappedBy="beacon", cascade=CascadeType.ALL)
+	private Promotion promotion;
+
 	public Beacon() {
 	}
 
-	public Beacon(String id, String type, String position, String zone) {
+	public Beacon(String id, String type, String position, String zone, Promotion promotion) {
 		this.id = id;
 		this.type = type;
 		this.position = position;
 		this.zone = zone;
+		this.promotion = promotion;
 	}
 
 	public String getId() {
@@ -52,6 +56,12 @@ public class Beacon {
 	}
 	public void setZone(String zone) {
 		this.zone = zone;
+	}
+	public Promotion getPromotion() {
+		return promotion;
+	}
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
 	}
 
 }
