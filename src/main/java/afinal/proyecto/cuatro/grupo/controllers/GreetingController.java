@@ -19,4 +19,9 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
     }
+
+    @RequestMapping("/")
+    public Greeting sayHi() {
+        return new Greeting(0, "Proyecto Final - Grupo 4");
+    }
 }
