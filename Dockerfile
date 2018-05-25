@@ -33,4 +33,4 @@ RUN  mvn package
 ENTRYPOINT ["sh", "/opt/backend/entrypoint.sh"]
 CMD ["start"]
 
-EXPOSE 8080
+EXPOSE 9090
