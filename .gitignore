@@ -22,8 +22,11 @@
 hs_err_pid*
 
 /target/
+target/classes/META-INF/MANIFEST.MF
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-archiver/pom.properties
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
 
 # IntelliJ IDE
 .idea/
 gs-rest-service.iml
-src/main/resources/application.properties
