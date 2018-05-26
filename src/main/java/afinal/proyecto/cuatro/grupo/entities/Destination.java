@@ -19,7 +19,8 @@ public class Destination {
 	@NotNull
 	private String zone;
 
-	@OneToMany(mappedBy = "destination")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	private UserDestinationHistory userDestinationHistory;
 
 	public Destination() {

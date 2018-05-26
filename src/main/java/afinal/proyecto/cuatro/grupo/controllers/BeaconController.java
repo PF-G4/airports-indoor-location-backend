@@ -23,7 +23,8 @@ public class BeaconController {
 	@RequestMapping(method = RequestMethod.GET)
 	public Iterable<Beacon> findAll() { return beaconService.findAll(); }
 
-	@GetMapping("/delete/{id}")
+	@RequestMapping(method = RequestMethod.DELETE)
+	@ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable(value = "id") String id) { beaconService.delete(id); }
 
 }

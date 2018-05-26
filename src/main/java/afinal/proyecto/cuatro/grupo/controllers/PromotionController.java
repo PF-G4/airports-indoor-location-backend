@@ -28,7 +28,8 @@ public class PromotionController {
 	@RequestMapping(method = RequestMethod.GET)
 	public Iterable<Promotion> findAll() { return promotionService.findAll(); }
 
-	@GetMapping("/delete")
-	public void delete(@RequestBody Promotion promotion) { promotionService.delete(promotion); }
+	@RequestMapping(method = RequestMethod.DELETE)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void delete(@PathVariable(value = "id") Long id) { promotionService.delete(id); }
 
 }

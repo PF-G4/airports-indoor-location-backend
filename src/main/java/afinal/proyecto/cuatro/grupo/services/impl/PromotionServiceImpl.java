@@ -40,11 +40,11 @@ public class PromotionServiceImpl extends ServiceUtil implements PromotionServic
 	}
 
 	@Override
-	public void delete(Promotion promotion) {
+	public void delete(Long id) {
 		try{
-			daoPromotion.delete(promotion);
+			daoPromotion.delete(findById(id));
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("[ERROR] " + e);
 		}
 	}
 

@@ -1,11 +1,8 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 @Entity
@@ -26,17 +23,23 @@ public class User {
 	@NotNull
 	private String password;
 
-	@OneToMany(mappedBy = "user")
+	@ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Set<Vuelo> vuelos;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	private UserDestinationHistory userDestinationHistory;
 	
 	public User() {
 		
 	}
 	
-	public User(String name, String email, String password, UserDestinationHistory userDestinationHistory) {
+	public User(String name, String email, String password, Set<Vuelo> vuelos, UserDestinationHistory userDestinationHistory) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.vuelos = vuelos;
 		this.userDestinationHistory = userDestinationHistory;
 	}
 
@@ -63,6 +66,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Set<Vuelo> getVuelos() {
+		return vuelos;
+	}
+	public void setVuelos(Set<Vuelo> vuelos) {
+		this.vuelos = vuelos;
 	}
 	public UserDestinationHistory getUserDestinationHistory() {
 		return userDestinationHistory;

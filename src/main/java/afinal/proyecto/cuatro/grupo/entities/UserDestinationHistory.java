@@ -1,9 +1,9 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "userdestinationhistory")
@@ -13,20 +13,24 @@ public class UserDestinationHistory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne
+	@OneToMany(mappedBy = "userDestinationHistory")
 	@PrimaryKeyJoinColumn
-	private User user;
+	private Set<User> users;
 
-	@ManyToOne
+	@OneToMany(mappedBy = "userDestinationHistory")
 	@PrimaryKeyJoinColumn
-	private Destination destination;
+	private Set<Destination> destinations;
+
+	@NotNull
+	private Date date;
 
 	public UserDestinationHistory() {
 	}
 
-	public UserDestinationHistory(User user, Destination destination) {
-		this.user = user;
-		this.destination = destination;
+	public UserDestinationHistory(Set<User> users, Set<Destination> destinations, Date date) {
+		this.users = users;
+		this.destinations = destinations;
+		this.date = date;
 	}
 
 	public Long getId() {
@@ -35,17 +39,21 @@ public class UserDestinationHistory {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public User getUser() {
-		return user;
+	public Set<User> getUser() { return users; }
+	public void setUser(Set<User> users) {
+		this.users = users;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public Set<Destination> getDestination() {
+		return destinations;
 	}
-	public Destination getDestination() {
-		return destination;
+	public void setDestination(Set<Destination> destinations) {
+		this.destinations = destinations;
 	}
-	public void setDestination(Destination destination) {
-		this.destination = destination;
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

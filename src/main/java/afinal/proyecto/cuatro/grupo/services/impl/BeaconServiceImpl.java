@@ -37,7 +37,7 @@ public class BeaconServiceImpl extends ServiceUtil implements BeaconService {
 		try{
 			daoBeacon.delete(findBeaconById(id));
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("[ERROR] " + e);
 		}
 	}
 
