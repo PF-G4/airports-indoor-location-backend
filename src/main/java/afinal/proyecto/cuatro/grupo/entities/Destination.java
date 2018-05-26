@@ -1,42 +1,33 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "destination")
+public class Destination {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@NotNull
-	private String name;
-	
+
 	@NotNull
 	@Column(unique = true)
-	private String email;
-	
-	@NotNull
-	private String password;
+	private String name;
 
-	@OneToMany(mappedBy = "user")
+	@NotNull
+	private String zone;
+
+	@OneToMany(mappedBy = "destination")
 	private UserDestinationHistory userDestinationHistory;
-	
-	public User() {
-		
+
+	public Destination() {
 	}
-	
-	public User(String name, String email, String password, UserDestinationHistory userDestinationHistory) {
+
+	public Destination(String name, String zone, UserDestinationHistory userDestinationHistory) {
 		this.name = name;
-		this.email = email;
-		this.password = password;
+		this.zone = zone;
 		this.userDestinationHistory = userDestinationHistory;
 	}
 
@@ -52,17 +43,11 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEmail() {
-		return email;
+	public String getZone() {
+		return zone;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setZone(String zone) {
+		this.zone = zone;
 	}
 	public UserDestinationHistory getUserDestinationHistory() {
 		return userDestinationHistory;
