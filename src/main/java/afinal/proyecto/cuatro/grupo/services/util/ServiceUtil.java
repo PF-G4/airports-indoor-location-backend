@@ -17,5 +17,6 @@ public class ServiceUtil {
 	public boolean isValidEmail(String email) {
 		return Pattern.compile(PATTERN_EMAIL).matcher(email).matches();
 	}
-
+	
+	
 }
