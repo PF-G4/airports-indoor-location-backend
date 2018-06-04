@@ -3,9 +3,8 @@ package afinal.proyecto.cuatro.grupo.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
-@Table(name = "destination")
+@Table(name = "destinations")
 public class Destination {
 
 	@Id
@@ -19,17 +18,12 @@ public class Destination {
 	@NotNull
 	private String zone;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private UserDestinationHistory userDestinationHistory;
-
 	public Destination() {
 	}
 
-	public Destination(String name, String zone, UserDestinationHistory userDestinationHistory) {
+	public Destination(String name, String zone) {
 		this.name = name;
 		this.zone = zone;
-		this.userDestinationHistory = userDestinationHistory;
 	}
 
 	public Long getId() {
@@ -50,11 +44,4 @@ public class Destination {
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
-	public UserDestinationHistory getUserDestinationHistory() {
-		return userDestinationHistory;
-	}
-	public void setUserDestinationHistory(UserDestinationHistory userDestinationHistory) {
-		this.userDestinationHistory = userDestinationHistory;
-	}
-
 }

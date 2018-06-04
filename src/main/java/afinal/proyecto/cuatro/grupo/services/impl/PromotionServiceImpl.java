@@ -19,7 +19,7 @@ public class PromotionServiceImpl extends ServiceUtil implements PromotionServic
 		try {
 			daoPromotion.save(promotion);
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("[ERROR] " + e);
 		}
 	}
 

@@ -19,18 +19,22 @@ public class VueloController {
 		vueloService.saveOrUpdate(vuelo);
 	}
 
-	@GetMapping("/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = {"/{id}"})
+	@ResponseStatus(value = HttpStatus.OK)
 	public Vuelo findVueloById(@PathVariable(value = "id") String id) {
 		return vueloService.findVueloById(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
 	public Iterable<Vuelo> findAll() {
 		return vueloService.findAll();
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(method = RequestMethod.DELETE, value = {"/{id}"})
 	@ResponseStatus(value = HttpStatus.OK)
-	public void delete(@PathVariable(value = "id") String id) { vueloService.delete(id); }
+	public void delete(@PathVariable(value = "id") String id) {
+		vueloService.delete(id);
+	}
 
 }

@@ -6,16 +6,15 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "vuelo")
+@Table(name = "vuelos")
 public class Vuelo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private Long id;
 
-	@ManyToMany(mappedBy = "vuelos")
-	@PrimaryKeyJoinColumn
-	private Set<User> users;
+	@NotNull
+	private String number;
 
 	@NotNull
 	private Date boardingDateTime;
@@ -23,30 +22,31 @@ public class Vuelo {
 	@NotNull
 	private Integer boardingGate;
 
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "vuelo_user",
+			joinColumns = { @JoinColumn(name = "vuelo_id") },
+			inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	private Set<User> users;
+
 	public Vuelo() {
 	}
 
-	public Vuelo(Set<User> users, Date boardingDateTime, Integer boardingGate) {
-		this.users = users;
+	public Vuelo(String number, Date boardingDateTime, Integer boardingGate, Set<User> users) {
+		this.number = number;
 		this.boardingDateTime = boardingDateTime;
 		this.boardingGate = boardingGate;
-	}
-
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public Set<User> getUsers() {
-		return users;
-	}
-	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
-	public Date getBoardingDateTime() {
-		return boardingDateTime;
+
+	public Long getId() {
+		return id;
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNumber() { return number; }
+	public void setNumber(String number) { this.number = number; }
+	public Date getBoardingDateTime() { return boardingDateTime; }
 	public void setBoardingDateTime(Date boardingDateTime) {
 		this.boardingDateTime = boardingDateTime;
 	}
@@ -56,5 +56,8 @@ public class Vuelo {
 	public void setBoardingGate(Integer boardingGate) {
 		this.boardingGate = boardingGate;
 	}
-
+	public Set<User> getUsers() {
+		return users;
+	}
+	public void setUsers(Set<User> users) { this.users = users; }
 }

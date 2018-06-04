@@ -1,40 +1,36 @@
 package afinal.proyecto.cuatro.grupo.controllers;
-
-import afinal.proyecto.cuatro.grupo.entities.Beacon;
-import afinal.proyecto.cuatro.grupo.services.BeaconService;
+import afinal.proyecto.cuatro.grupo.entities.Destination;
+import afinal.proyecto.cuatro.grupo.services.DestinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/beacon")
-public class BeaconController {
+@RequestMapping("/destination")
+public class DestinationController {
 
 	@Autowired
-	private BeaconService beaconService;
+	private DestinationService destinationService;
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public void saveOrUpdate(@RequestBody Beacon beacon) {
-		beaconService.saveOrUpdate(beacon);
-	}
+	public void saveOrUpdate(@RequestBody Destination destination) {
+		destinationService.saveOrUpdate(destination); }
 
 	@RequestMapping(method = RequestMethod.GET, value = {"/{id}"})
 	@ResponseStatus(value = HttpStatus.OK)
-	public Beacon findById(@PathVariable(value = "id") Long id) {
-		return beaconService.findById(id);
+	public Destination findById(@PathVariable(value = "id") Long id) {
+		return destinationService.findById(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public Iterable<Beacon> findAll() {
-		return beaconService.findAll();
-	}
+	public Iterable<Destination> findAll() {
+		return destinationService.findAll(); }
 
 	@RequestMapping(method = RequestMethod.DELETE, value = {"/{id}"})
 	@ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable(value = "id") Long id) {
-		beaconService.delete(id);
-	}
+		destinationService.delete(id); }
 
 }

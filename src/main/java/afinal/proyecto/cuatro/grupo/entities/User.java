@@ -23,24 +23,18 @@ public class User {
 	@NotNull
 	private String password;
 
-	@ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@ManyToMany(mappedBy = "users")
 	private Set<Vuelo> vuelos;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private UserDestinationHistory userDestinationHistory;
-	
 	public User() {
 		
 	}
 	
-	public User(String name, String email, String password, Set<Vuelo> vuelos, UserDestinationHistory userDestinationHistory) {
+	public User(String name, String email, String password, Set<Vuelo> vuelos) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.vuelos = vuelos;
-		this.userDestinationHistory = userDestinationHistory;
 	}
 
 	public Long getId() {
@@ -67,17 +61,9 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Set<Vuelo> getVuelos() {
-		return vuelos;
-	}
+	public Set<Vuelo> getVuelos() { return vuelos; }
 	public void setVuelos(Set<Vuelo> vuelos) {
 		this.vuelos = vuelos;
-	}
-	public UserDestinationHistory getUserDestinationHistory() {
-		return userDestinationHistory;
-	}
-	public void setUserDestinationHistory(UserDestinationHistory userDestinationHistory) {
-		this.userDestinationHistory = userDestinationHistory;
 	}
 
 }

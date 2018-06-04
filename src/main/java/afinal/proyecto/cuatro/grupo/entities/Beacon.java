@@ -2,18 +2,17 @@ package afinal.proyecto.cuatro.grupo.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "beacons")
 public class Beacon {
 
 	@Id
-	@Size(max = 60)
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 	@NotNull
-	private String type;
+	private String name;
 
 	@NotNull
 	private String position;
@@ -27,24 +26,21 @@ public class Beacon {
 	public Beacon() {
 	}
 
-	public Beacon(String id, String type, String position, String zone, Promotion promotion) {
-		this.id = id;
-		this.type = type;
+	public Beacon(String name, String position, String zone, Promotion promotion) {
+		this.name = name;
 		this.position = position;
 		this.zone = zone;
 		this.promotion = promotion;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) { this.id = id; }
-	public String getType() {
-		return type;
+	public void setId(Long id) { this.id = id; }
+	public String getName() {
+		return name;
 	}
-	public void setType(String type) {
-		this.type = type;
-	}
+	public void setName(String name) { this.name = name; }
 	public String getPosition() {
 		return position;
 	}

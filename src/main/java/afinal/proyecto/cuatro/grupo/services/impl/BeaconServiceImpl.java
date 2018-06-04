@@ -2,6 +2,8 @@ package afinal.proyecto.cuatro.grupo.services.impl;
 
 import afinal.proyecto.cuatro.grupo.dao.DaoBeacon;
 import afinal.proyecto.cuatro.grupo.entities.Beacon;
+import afinal.proyecto.cuatro.grupo.exceptions.BeaconNotFoundException;
+import afinal.proyecto.cuatro.grupo.exceptions.UserNotFoundException;
 import afinal.proyecto.cuatro.grupo.services.BeaconService;
 import afinal.proyecto.cuatro.grupo.services.util.ServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,14 @@ public class BeaconServiceImpl extends ServiceUtil implements BeaconService {
 		try {
 			daoBeacon.save(beacon);
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("[ERROR] " + e);
 		}
 	}
 
 	@Override
-	public Beacon findBeaconById(String id) {
-		return daoBeacon.findBeaconById(id);
+	public Beacon findById(Long id) {
+		return daoBeacon.findById(id)
+				.orElseThrow(() -> new BeaconNotFoundException("id", id));
 	}
 
 	@Override
@@ -33,9 +36,9 @@ public class BeaconServiceImpl extends ServiceUtil implements BeaconService {
 	}
 
 	@Override
-	public void delete(String id) {
+	public void delete(Long id) {
 		try{
-			daoBeacon.delete(findBeaconById(id));
+			daoBeacon.delete(findById(id));
 		} catch (Exception e) {
 			System.out.println("[ERROR] " + e);
 		}
