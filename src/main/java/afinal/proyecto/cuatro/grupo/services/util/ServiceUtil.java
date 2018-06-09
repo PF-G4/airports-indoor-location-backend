@@ -1,7 +1,6 @@
 package afinal.proyecto.cuatro.grupo.services.util;
 
 import java.util.regex.Pattern;
-
 import org.hibernate.exception.ConstraintViolationException;
 
 public class ServiceUtil {

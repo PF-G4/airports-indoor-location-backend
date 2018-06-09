@@ -7,10 +7,10 @@ public interface BeaconService {
 
 	void saveOrUpdate(Beacon beacon);
 
-	Beacon findBeaconById(String id);
+	Beacon findById(Long id);
 
 	Iterable<Beacon> findAll();
 	
-	void delete(String id);
+	void delete(Long id);
 
 }

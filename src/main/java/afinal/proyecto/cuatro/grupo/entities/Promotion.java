@@ -26,6 +26,8 @@ public class Promotion {
 		this.beacon = beacon;
 	}
 
+	public Long getId() { return id; }
+	public void setId(Long id) { this.id = id; }
 	public String getPromotion() {
 		return promotion;
 	}

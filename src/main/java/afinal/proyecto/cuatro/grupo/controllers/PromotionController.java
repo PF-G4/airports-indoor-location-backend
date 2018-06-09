@@ -15,20 +15,33 @@ public class PromotionController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public void saveOrUpdate(@RequestBody Promotion promotion) { promotionService.saveOrUpdate(promotion); }
+	public void saveOrUpdate(@RequestBody Promotion promotion) {
+		promotionService.saveOrUpdate(promotion);
+	}
 
-	@GetMapping("/{id}")
-	public Promotion findById(@PathVariable(value = "id") Long id) { return promotionService.findById(id); }
+	@RequestMapping(method = RequestMethod.GET, value = {"/{id}"})
+	@ResponseStatus(value = HttpStatus.OK)
+	public Promotion findById(@PathVariable(value = "id") Long id) {
+		return promotionService.findById(id);
+	}
 
-	@GetMapping("/{beaconId}")
+
+	@RequestMapping(method = RequestMethod.GET, value = {"/{beaconId}"})
+	@ResponseStatus(value = HttpStatus.OK)
 	public Promotion findPromotionByBeaconId(@PathVariable(value = "beaconId") String beaconId) {
 		return promotionService.findPromotionByBeaconId(beaconId);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Iterable<Promotion> findAll() { return promotionService.findAll(); }
+	@ResponseStatus(value = HttpStatus.OK)
+	public Iterable<Promotion> findAll() {
+		return promotionService.findAll();
+	}
 
-	@GetMapping("/delete")
-	public void delete(@RequestBody Promotion promotion) { promotionService.delete(promotion); }
+	@RequestMapping(method = RequestMethod.DELETE, value = {"/{id}"})
+	@ResponseStatus(value = HttpStatus.OK)
+	public void delete(@PathVariable(value = "id") Long id) {
+		promotionService.delete(id);
+	}
 
 }

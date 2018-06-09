@@ -14,6 +14,6 @@ public interface PromotionService {
 
 	Iterable<Promotion> findAll();
 	
-	void delete(Promotion promotion);
+	void delete(Long id);
 
 }

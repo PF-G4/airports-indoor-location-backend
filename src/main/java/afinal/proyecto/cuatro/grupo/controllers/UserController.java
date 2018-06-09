@@ -26,14 +26,22 @@ public class UserController {
 		userService.saveOrUpdate(user);
 	}
 
-	@GetMapping("/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = {"/{id}"})
+	@ResponseStatus(value = HttpStatus.OK)
 	public User findById(@PathVariable(value = "id") Long id) {
 		return userService.findById(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
 	public Iterable<User> findAll() {
 		return userService.findAll();
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value = {"/{id}"})
+	@ResponseStatus(value = HttpStatus.OK)
+	public void delete(@PathVariable(value = "id") Long id) {
+		userService.delete(findById(id));
 	}
 
 }
