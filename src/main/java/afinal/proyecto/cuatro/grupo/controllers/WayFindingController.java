@@ -18,13 +18,13 @@ public class WayFindingController {
 	private WayFindingService wayFindingService;
 
 
-	@GetMapping("/{idBeacon}/{destino}")
+	@GetMapping("/{posX}/{posY}")
 
-    public void getDestination(@PathVariable(value = "idBeacon") String idBeacon,
+    public void getDestination(@PathVariable(value = "posX") double posX,
 
-							   @PathVariable(value = "destino") String destino) {
+							   @PathVariable(value = "posY") double posY) {
 
-        /*return */ wayFindingService.getDestination(idBeacon, destino);
+        /*return */ wayFindingService.getDestination(posX, posY);
 
     }
 

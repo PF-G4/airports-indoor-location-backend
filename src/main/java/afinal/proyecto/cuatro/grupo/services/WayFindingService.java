@@ -1,5 +1,5 @@
 package afinal.proyecto.cuatro.grupo.services;
 
 public interface WayFindingService {
-	void getDestination(String idBeacon,String destino);
+	void getDestination(double pos_dest_x,double pos_dest_y);
 }
