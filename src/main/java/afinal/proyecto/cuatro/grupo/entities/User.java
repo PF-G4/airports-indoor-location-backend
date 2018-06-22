@@ -1,8 +1,15 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -27,7 +34,7 @@ public class User {
 	private Set<Vuelo> vuelos;
 
 	public User() {
-		
+
 	}
 	
 	public User(String name, String email, String password, Set<Vuelo> vuelos) {

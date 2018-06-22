@@ -1,20 +1,21 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
-import org.springframework.stereotype.Service;
-import afinal.proyecto.cuatro.grupo.services.WayFindingService;
-import afinal.proyecto.cuatro.grupo.services.util.ServiceUtil;
-import afinal.proyecto.cuatro.grupo.entities.Edge;
-import afinal.proyecto.cuatro.grupo.entities.Node;
-import java.util.PriorityQueue;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
-import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Set;
+
+import org.springframework.stereotype.Service;
+
+import afinal.proyecto.cuatro.grupo.entities.Edge;
+import afinal.proyecto.cuatro.grupo.entities.Node;
+import afinal.proyecto.cuatro.grupo.services.WayFindingService;
 
 @Service
-public class WayFindingServiceImpl extends ServiceUtil implements WayFindingService {
+public class WayFindingServiceImpl implements WayFindingService {
 	
 	@Override
 	public void getDestination(double pos_dest_x,double pos_dest_y) {

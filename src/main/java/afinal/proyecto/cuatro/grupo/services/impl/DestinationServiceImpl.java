@@ -1,15 +1,15 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import afinal.proyecto.cuatro.grupo.dao.DaoDestination;
 import afinal.proyecto.cuatro.grupo.entities.Destination;
 import afinal.proyecto.cuatro.grupo.exceptions.DestinationNotFoundException;
 import afinal.proyecto.cuatro.grupo.services.DestinationService;
-import afinal.proyecto.cuatro.grupo.services.util.ServiceUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
-public class DestinationServiceImpl extends ServiceUtil implements DestinationService {
+public class DestinationServiceImpl implements DestinationService {
 	
 	@Autowired
 	private DaoDestination daoDestination;

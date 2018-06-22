@@ -1,16 +1,15 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
-import afinal.proyecto.cuatro.grupo.dao.DaoBeacon;
-import afinal.proyecto.cuatro.grupo.entities.Beacon;
-import afinal.proyecto.cuatro.grupo.exceptions.BeaconNotFoundException;
-import afinal.proyecto.cuatro.grupo.exceptions.UserNotFoundException;
-import afinal.proyecto.cuatro.grupo.services.BeaconService;
-import afinal.proyecto.cuatro.grupo.services.util.ServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import afinal.proyecto.cuatro.grupo.dao.DaoBeacon;
+import afinal.proyecto.cuatro.grupo.entities.Beacon;
+import afinal.proyecto.cuatro.grupo.exceptions.BeaconNotFoundException;
+import afinal.proyecto.cuatro.grupo.services.BeaconService;
+
 @Service
-public class BeaconServiceImpl extends ServiceUtil implements BeaconService {
+public class BeaconServiceImpl implements BeaconService {
 	
 	@Autowired
 	private DaoBeacon daoBeacon;
