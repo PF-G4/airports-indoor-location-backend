@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import afinal.proyecto.cuatro.grupo.entities.User;
 
 @Service

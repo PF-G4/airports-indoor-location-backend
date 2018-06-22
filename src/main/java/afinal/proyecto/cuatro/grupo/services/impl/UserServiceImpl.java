@@ -11,7 +11,6 @@ import afinal.proyecto.cuatro.grupo.exceptions.UserDuplicateEmailException;
 import afinal.proyecto.cuatro.grupo.exceptions.UserLoginInvalidPassword;
 import afinal.proyecto.cuatro.grupo.exceptions.UserNotFoundException;
 import afinal.proyecto.cuatro.grupo.services.UserService;
-import afinal.proyecto.cuatro.grupo.util.SecurityUtil;
 import afinal.proyecto.cuatro.grupo.util.ServiceUtil;
 
 @Service
@@ -51,7 +50,7 @@ public class UserServiceImpl implements UserService {
 		if (user == null) {
 			throw new UserNotFoundException("email", aUser.getEmail());
 		}
-		if (!user.getPassword().equals(SecurityUtil.getSHA512SecurePassword(aUser.getPassword()))) {
+		if (!user.getPassword().equals(aUser.getPassword())) {
 			throw new UserLoginInvalidPassword(aUser.getEmail());
 		}
 		return user;
