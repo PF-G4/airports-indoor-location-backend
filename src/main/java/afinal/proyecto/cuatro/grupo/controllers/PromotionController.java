@@ -19,6 +19,12 @@ public class PromotionController {
 		promotionService.saveOrUpdate(promotion);
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value = {"/beacon/{beaconId}"})
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public Promotion saveOrUpdateWithBeacon(@RequestBody Promotion promotion, @PathVariable(value = "beaconId") Long beaconId) {
+		return promotionService.saveOrUpdateWithBeacon(promotion,beaconId);
+	}
+
 	@RequestMapping(method = RequestMethod.GET, value = {"/{id}"})
 	@ResponseStatus(value = HttpStatus.OK)
 	public Promotion findById(@PathVariable(value = "id") Long id) {
@@ -26,9 +32,9 @@ public class PromotionController {
 	}
 
 
-	@RequestMapping(method = RequestMethod.GET, value = {"/{beaconId}"})
+	@RequestMapping(method = RequestMethod.GET, value = {"/beacon/{beaconId}"})
 	@ResponseStatus(value = HttpStatus.OK)
-	public Promotion findPromotionByBeaconId(@PathVariable(value = "beaconId") String beaconId) {
+	public Promotion findPromotionByBeaconId(@PathVariable(value = "beaconId") Long beaconId) {
 		return promotionService.findPromotionByBeaconId(beaconId);
 	}
 

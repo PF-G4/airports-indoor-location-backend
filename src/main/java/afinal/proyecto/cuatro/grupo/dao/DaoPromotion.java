@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 public interface DaoPromotion extends CrudRepository<Promotion, Long> {
 
     @Query("select p from Promotion p where p.beacon=:beaconId")
-    Promotion findPromotionByBeaconId(@Param("beaconId") String beaconId);
+    Promotion findPromotionByBeaconId(@Param("beaconId") Long beaconId);
 }

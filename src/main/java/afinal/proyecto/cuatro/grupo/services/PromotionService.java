@@ -8,7 +8,9 @@ public interface PromotionService {
 
 	void saveOrUpdate(Promotion promotion);
 
-	Promotion findPromotionByBeaconId(String id);
+	Promotion saveOrUpdateWithBeacon(Promotion promotion, Long beaconId);
+
+	Promotion findPromotionByBeaconId(Long id);
 
 	Promotion findById(Long id);
 
