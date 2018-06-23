@@ -1,8 +1,9 @@
 package afinal.proyecto.cuatro.grupo.controllers;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,12 @@ public class UserController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable(value = "id") Long id) {
 		userService.delete(findById(id));
+	}
+	
+	@RequestMapping(value = "/login" ,method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public User login(@RequestBody User user) throws IOException {
+		return userService.login(user);
 	}
 
 }

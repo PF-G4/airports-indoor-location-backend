@@ -1,5 +1,7 @@
 package afinal.proyecto.cuatro.grupo.services;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Service;
 
 import afinal.proyecto.cuatro.grupo.entities.User;
@@ -14,5 +16,7 @@ public interface UserService {
 	Iterable<User> findAll();
 	
 	void delete(User user);
+
+	User login(User user) throws IOException;
 
 }

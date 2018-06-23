@@ -1,14 +1,14 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
-import afinal.proyecto.cuatro.grupo.dao.DaoVuelo;
-import afinal.proyecto.cuatro.grupo.entities.Vuelo;
-import afinal.proyecto.cuatro.grupo.services.VueloService;
-import afinal.proyecto.cuatro.grupo.services.util.ServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import afinal.proyecto.cuatro.grupo.dao.DaoVuelo;
+import afinal.proyecto.cuatro.grupo.entities.Vuelo;
+import afinal.proyecto.cuatro.grupo.services.VueloService;
+
 @Service
-public class VueloServiceImpl extends ServiceUtil implements VueloService {
+public class VueloServiceImpl implements VueloService {
 	
 	@Autowired
 	private DaoVuelo daoVuelo;
