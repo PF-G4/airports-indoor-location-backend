@@ -2,17 +2,14 @@ package afinal.proyecto.cuatro.grupo.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import afinal.proyecto.cuatro.grupo.dao.DaoPromotion;
 import afinal.proyecto.cuatro.grupo.entities.Promotion;
 import afinal.proyecto.cuatro.grupo.exceptions.PromotionNotFoundException;
-import afinal.proyecto.cuatro.grupo.services.PromotionService;
-import afinal.proyecto.cuatro.grupo.services.util.ServiceUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import afinal.proyecto.cuatro.grupo.services.BeaconService;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import afinal.proyecto.cuatro.grupo.services.PromotionService;
 
 @Service
 public class PromotionServiceImpl implements PromotionService {
