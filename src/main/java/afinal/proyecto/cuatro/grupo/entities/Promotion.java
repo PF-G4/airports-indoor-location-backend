@@ -28,9 +28,7 @@ public class Promotion {
 
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id; }
-	public String getPromotion() {
-		return promotion;
-	}
+	public String getPromotion() { return promotion; }
 	public void setPromotion(String promotion) {
 		this.promotion = promotion;
 	}
@@ -40,5 +38,4 @@ public class Promotion {
 	public void setBeacon(Beacon beacon) {
 		this.beacon = beacon;
 	}
-
 }
