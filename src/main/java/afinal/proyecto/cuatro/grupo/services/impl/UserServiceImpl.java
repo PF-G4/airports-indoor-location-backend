@@ -2,6 +2,7 @@ package afinal.proyecto.cuatro.grupo.services.impl;
 
 import java.io.IOException;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,6 @@ import afinal.proyecto.cuatro.grupo.exceptions.UserDuplicateEmailException;
 import afinal.proyecto.cuatro.grupo.exceptions.UserLoginInvalidPassword;
 import afinal.proyecto.cuatro.grupo.exceptions.UserNotFoundException;
 import afinal.proyecto.cuatro.grupo.services.UserService;
-import afinal.proyecto.cuatro.grupo.util.ServiceUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,7 +24,10 @@ public class UserServiceImpl implements UserService {
 		try {
 			daoUser.save(user);
 		} catch (Exception e) {
-			if (ServiceUtil.isConstraintName("unique_email", e)) throw new UserDuplicateEmailException(user.getEmail());
+			if (e.getCause() != null && e.getCause() instanceof ConstraintViolationException) {
+				throw new UserDuplicateEmailException(user.getEmail());
+			}
+//			if (ServiceUtil.isConstraintName("unique_email", e)) throw new UserDuplicateEmailException(user.getEmail());
 		}
 	}
 
