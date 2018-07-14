@@ -8,10 +8,10 @@ public interface VueloService {
 	
 	void saveOrUpdate(Vuelo vuelo);
 	
-	Vuelo findVueloById(String id);
+	Vuelo findVueloById(Long id);
 	
 	Iterable<Vuelo> findAll();
 
-	void delete(String id);
+	void delete(Long id);
 
 }
