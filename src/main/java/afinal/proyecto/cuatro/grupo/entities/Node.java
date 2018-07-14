@@ -109,5 +109,7 @@ public class Node{
 	public void setPos_y(double pos_y) {
 		this.pos_y = pos_y;
 	}
+	
+	
 
 }
