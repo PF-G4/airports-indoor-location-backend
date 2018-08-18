@@ -21,7 +21,7 @@ public class VueloController {
 
 	@RequestMapping(method = RequestMethod.GET, value = {"/{id}"})
 	@ResponseStatus(value = HttpStatus.OK)
-	public Vuelo findVueloById(@PathVariable(value = "id") String id) {
+	public Vuelo findVueloById(@PathVariable(value = "id") Long id) {
 		return vueloService.findVueloById(id);
 	}
 
@@ -33,7 +33,7 @@ public class VueloController {
 
 	@RequestMapping(method = RequestMethod.DELETE, value = {"/{id}"})
 	@ResponseStatus(value = HttpStatus.OK)
-	public void delete(@PathVariable(value = "id") String id) {
+	public void delete(@PathVariable(value = "id") Long id) {
 		vueloService.delete(id);
 	}
 

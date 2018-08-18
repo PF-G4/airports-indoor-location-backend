@@ -11,6 +11,8 @@ import afinal.proyecto.cuatro.grupo.services.DestinationService;
 @Service
 public class DestinationServiceImpl implements DestinationService {
 	
+	//FIXME verificar si es necesario exponer un servicio y tabla DESTINATION
+	
 	@Autowired
 	private DaoDestination daoDestination;
 	
