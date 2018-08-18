@@ -18,13 +18,17 @@ public class WayFindingController {
 	private WayFindingService wayFindingService;
 
 
-	@GetMapping("/{posX}/{posY}")
+	@GetMapping("/{oPosX}/{oPosY}/{dPosX}/{dPosY}")
 
-    public void getDestination(@PathVariable(value = "posX") double posX,
+    public void getDestination(@PathVariable(value = "oPosX") double oPosX,
 
-							   @PathVariable(value = "posY") double posY) {
+							   @PathVariable(value = "oPosY") double oPosY,
+    
+    						   @PathVariable(value = "dPosX") double dPosX,   						   
+	
+    						   @PathVariable(value = "dPosY") double dPosY){
 
-        /*return */ wayFindingService.getDestination(posX, posY);
+        /*return */ wayFindingService.getDestination(oPosX,oPosY,dPosX,dPosY);
 
     }
 
