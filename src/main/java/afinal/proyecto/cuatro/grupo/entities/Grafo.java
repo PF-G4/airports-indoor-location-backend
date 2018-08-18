@@ -1,17 +1,7 @@
 package afinal.proyecto.cuatro.grupo.entities;
-import afinal.proyecto.cuatro.grupo.entities.Node;
-import afinal.proyecto.cuatro.grupo.entities.Edge;
 
-import org.assertj.core.util.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Set;
 
 
 public class Grafo {
