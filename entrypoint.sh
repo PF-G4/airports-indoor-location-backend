@@ -6,7 +6,7 @@ echo ""
 cd "$APP_PATH"
 
 start () {
-    java -jar target/gs-rest-service-0.1.0.jar   # Separar por env levantando un puerto distinto (en caso de tener ambiente de test)
+    java -jar target/airports-indoor-location-backend-0.1.0.jar   # Separar por env levantando un puerto distinto (en caso de tener ambiente de test)
 }
 
 shell () {
