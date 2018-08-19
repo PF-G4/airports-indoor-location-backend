@@ -15,37 +15,37 @@ import javax.validation.constraints.NotNull;
 @Table(name = "vuelo_estado")
 public class StateFlight {
 
-	@Id
-	@Column(name = "id")
-	private Integer id;
+    @Id
+    @Column(name = "id")
+    private Integer id;
 
-	@NotNull
-	@Column(name = "description")
-	private String description;
+    @NotNull
+    @Column(name = "description")
+    private String description;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "stateFlightId")
-	private Set<Vuelo> vuelo;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stateFlightId")
+    private Set<Vuelo> vuelo;
 
-	private StateFlight() {
+    private StateFlight() {
 
-	}
+    }
 
-	private StateFlight(Integer id, String description) {
-		this.id = id;
-		this.description = description;
-	}
+    private StateFlight(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }

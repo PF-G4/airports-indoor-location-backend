@@ -19,16 +19,16 @@ import afinal.proyecto.cuatro.grupo.services.VueloService;
 
 @Service
 public class VueloServiceImpl implements VueloService {
-	
+
 	@Autowired
 	private DaoVuelo daoVuelo;
-	
+
 	@Autowired
 	private DaoStateFlight daoStateFlight;
-	
+
 	@Autowired
 	private DaoLocation daoLocation;
-	
+
 	@Override
 	public void saveOrUpdate(Vuelo vuelo) {
 		validateStateFlightId(vuelo);
@@ -70,7 +70,7 @@ public class VueloServiceImpl implements VueloService {
 	}
 
 	//PRIVATE METHODS
-	
+
 	private void validateStateFlightId(Vuelo vuelo) {
 		if (vuelo.getStateFlightId() == null) {
 			vuelo.setStateFlightId(StateFlightEnum.EN_HORARIO.getId());
@@ -78,18 +78,17 @@ public class VueloServiceImpl implements VueloService {
 			daoStateFlight.findById(vuelo.getStateFlightId()).orElseThrow(() -> new StateNotFoundException("id", vuelo.getStateFlightId()));
 		}
 	}
-	
+
 	private void setStateFlightResponse(Vuelo response) {
 		StateFlight stateFlight = daoStateFlight.findById(response.getStateFlightId())
 				.orElseThrow(() -> new StateNotFoundException("id", response.getStateFlightId()));
 		response.setStateFlight(stateFlight);
 	}
-	
+
 	private void setLocationResponse(Vuelo response) {
 		Location location = daoLocation.findById(response.getDestinationId()).
 				orElseThrow(() -> new LocationNotFoundException("id", response.getDestinationId()));
 		response.setDestination(location);
 	}
-	
+
 }
-	
