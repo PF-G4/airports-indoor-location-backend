@@ -36,7 +36,11 @@ public class Edge{
             target_value = target.getValue();
     }
 
-	public double getCost() {
+	public Edge() {
+		
+	}
+    
+    public double getCost() {
 		return cost;
 	}
 	
