@@ -1,13 +1,10 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,6 +12,7 @@ import javax.validation.constraints.NotNull;
 public class Location {
 
 	@Id
+	@Column(name = "id")
 	private Integer id;
 
 	@NotNull
@@ -23,8 +21,7 @@ public class Location {
 	@NotNull
 	private String abreviature;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "destinationId")
+	@OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
 	private Set<Vuelo> vuelo;
 
 	public Integer getId() {
@@ -49,6 +46,15 @@ public class Location {
 
 	public void setAbreviature(String abreviature) {
 		this.abreviature = abreviature;
+	}
+
+	@JsonIgnore
+	public Set<Vuelo> getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(Set<Vuelo> vuelo) {
+		this.vuelo = vuelo;
 	}
 
 	@Override

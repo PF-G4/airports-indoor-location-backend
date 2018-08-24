@@ -1,16 +1,11 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "vuelos")
@@ -32,28 +27,29 @@ public class Vuelo {
 	@Column(name = "boarding_gate")
 	private Integer boardingGate;
 
-	@NotNull
-	@Column(columnDefinition = "INT(11) default '1'")
+	@Transient
+	@JsonIgnore
 	private Integer stateFlightId;
 
-	@NotNull
-    @Column(columnDefinition = "INT(11) default '1'")
+	@Transient
+	@JsonIgnore
 	private Integer destinationId;
 
-	@Transient
+    @ManyToOne
+    @JoinColumn(name = "state_flight_id")
 	private StateFlight stateFlight;
 
-	@Transient
+    @ManyToOne
+    @JoinColumn(name = "destination_id") // o destination_id ?
 	private Location destination;
 
     public Vuelo() {
     }
 
-	public Vuelo(String number, Date boardingDateTime, Integer boardingGate, Integer stateFlightId) {
+	public Vuelo(String number, Date boardingDateTime, Integer boardingGate) {
 		this.number = number;
 		this.boardingDateTime = boardingDateTime;
 		this.boardingGate = boardingGate;
-		this.stateFlightId = stateFlightId;
 	}
 	
 	public Long getId() {
@@ -73,6 +69,7 @@ public class Vuelo {
 	public Date getBoardingDateTime() {
 		return boardingDateTime; 
 	}
+
 	public void setBoardingDateTime(Date boardingDateTime) {
 		this.boardingDateTime = boardingDateTime;
 	}
@@ -80,6 +77,7 @@ public class Vuelo {
 	public Integer getBoardingGate() {
 		return boardingGate;
 	}
+
 	public void setBoardingGate(Integer boardingGate) {
 		this.boardingGate = boardingGate;
 	}
@@ -88,21 +86,33 @@ public class Vuelo {
 	public Integer getStateFlightId() {
 		return stateFlightId;
 	}
+
+	@JsonProperty
 	public void setStateFlightId(Integer stateFlightId) {
 		this.stateFlightId = stateFlightId;
 	}
 
-	public StateFlight getStateFlight() {return stateFlight;}
-	public void setStateFlight(StateFlight stateFlight) {this.stateFlight = stateFlight;}
-
-    @JsonIgnore
+	@JsonIgnore
 	public Integer getDestinationId() {
 		return destinationId;
 	}
+
+	@JsonProperty
 	public void setDestinationId(Integer destinationId) {
 		this.destinationId = destinationId;
 	}
 
-	public Location getDestination() {return destination;}
+	public Location getDestination() {
+	    return destination;
+	}
+
 	public void setDestination(Location destination) {this.destination = destination;}
+
+	public void setStateFlight(StateFlight stateFlight) {
+		this.stateFlight = stateFlight;
+	}
+
+	public StateFlight getStateFlight() {
+		return stateFlight;
+	}
 }

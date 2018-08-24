@@ -1,5 +1,7 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,8 +25,7 @@ public class StateFlight {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "stateFlightId")
+    @OneToMany(mappedBy = "stateFlight", cascade = CascadeType.ALL)
     private Set<Vuelo> vuelo;
 
     private StateFlight() {
@@ -46,6 +47,15 @@ public class StateFlight {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @JsonIgnore
+    public Set<Vuelo> getVuelo() {
+        return vuelo;
+    }
+
+    public void setVuelo(Set<Vuelo> vuelo) {
+        this.vuelo = vuelo;
     }
 
 }
