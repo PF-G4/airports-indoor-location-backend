@@ -1,5 +1,6 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
+import afinal.proyecto.cuatro.grupo.exceptions.*;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,6 @@ import afinal.proyecto.cuatro.grupo.entities.Location;
 import afinal.proyecto.cuatro.grupo.entities.StateFlight;
 import afinal.proyecto.cuatro.grupo.entities.StateFlightEnum;
 import afinal.proyecto.cuatro.grupo.entities.Vuelo;
-import afinal.proyecto.cuatro.grupo.exceptions.FlightDuplicateNumberException;
-import afinal.proyecto.cuatro.grupo.exceptions.FlightNotFoundException;
-import afinal.proyecto.cuatro.grupo.exceptions.LocationNotFoundException;
-import afinal.proyecto.cuatro.grupo.exceptions.StateNotFoundException;
 import afinal.proyecto.cuatro.grupo.services.VueloService;
 
 @Service
@@ -73,7 +70,8 @@ public class VueloServiceImpl implements VueloService {
 
 
 	private void validateDestinationId(Vuelo vuelo) {
-		Location destination = daoLocation.findById(vuelo.getDestinationId()).get();
+		Location destination = daoLocation.findById(
+				vuelo.getDestinationId()).orElseThrow(() -> new DestinationNotFoundException("id", vuelo.getDestinationId()));
 		vuelo.setDestination(destination);
 	}
 }
