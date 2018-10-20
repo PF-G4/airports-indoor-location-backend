@@ -1,12 +1,12 @@
 package afinal.proyecto.cuatro.grupo.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -27,6 +27,16 @@ public class User {
 	@NotNull
 	private String password;
 
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			})
+	@JoinTable(name = "user_vuelos",
+			joinColumns = { @JoinColumn(name = "user_id") },
+			inverseJoinColumns = { @JoinColumn(name = "vuelo_id") })
+	private Set<Vuelo> flights;
+
 	public User() {
 
 	}
@@ -35,6 +45,7 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.flights = new HashSet<>();
 	}
 
 	public Long getId() {
@@ -62,4 +73,13 @@ public class User {
 		this.password = password;
 	}
 
+	@JsonProperty
+	public Set<Vuelo> getFlights() {
+		return flights;
+	}
+
+	@JsonProperty
+	public void setFlights(Set<Vuelo> flights) {
+		this.flights = flights;
+	}
 }
