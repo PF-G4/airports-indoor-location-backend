@@ -2,14 +2,14 @@ package afinal.proyecto.cuatro.grupo.controllers;
 
 import afinal.proyecto.cuatro.grupo.entities.Node;
 import afinal.proyecto.cuatro.grupo.entities.Road;
-import com.oracle.tools.packager.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import afinal.proyecto.cuatro.grupo.services.WayFindingService;;import java.util.ArrayList;
+import afinal.proyecto.cuatro.grupo.services.WayFindingService;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,8 +18,12 @@ import java.util.List;
 @RequestMapping("/way-finding")
 public class WayFindingController {
 
+    private final WayFindingService wayFindingService;
+
     @Autowired
-    private WayFindingService wayFindingService;
+    public WayFindingController(WayFindingService wayFindingService) {
+        this.wayFindingService = wayFindingService;
+    }
 
     @GetMapping("/{oPosX}/{oPosY}/{dPosX}/{dPosY}")
     public Road getDestination(
@@ -43,7 +47,7 @@ public class WayFindingController {
 
         aux = aux.substring(1, aux.length() - 1);
 
-        List<String> myList = new ArrayList<String>(Arrays.asList(aux.split(",")));
+        List<String> myList = new ArrayList<>(Arrays.asList(aux.split(",")));
 
         return new Road(myList);
     }
