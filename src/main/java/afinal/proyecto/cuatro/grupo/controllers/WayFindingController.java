@@ -12,6 +12,7 @@ import afinal.proyecto.cuatro.grupo.services.WayFindingService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -26,7 +27,7 @@ public class WayFindingController {
     }
 
     @GetMapping("/{oPosX}/{oPosY}/{dPosX}/{dPosY}")
-    public Road getDestination(
+    public List<String> getDestination(
             @PathVariable(value = "oPosX") double oPosX,
             @PathVariable(value = "oPosY") double oPosY,
             @PathVariable(value = "dPosX") double dPosX,
@@ -34,21 +35,12 @@ public class WayFindingController {
 
         List<Node> destination = wayFindingService.getDestination(oPosX, oPosY, dPosX, dPosY);
 
-        Road road = convertToRoad(destination);
+        System.out.printf("*** getDestination - road: %s%n", destination.toString());
 
-        System.out.printf("*** getDestination - road: %s%n", road.toString());
-
-        return road;
+        return createResponse(destination);
     }
 
-    private Road convertToRoad(List<Node> destination) {
-
-        String aux = destination.toString();
-
-        aux = aux.substring(1, aux.length() - 1);
-
-        List<String> myList = new ArrayList<>(Arrays.asList(aux.split(",")));
-
-        return new Road(myList);
+    private List<String> createResponse(List<Node> destination) {
+        return destination.stream().map(Node::toString).collect(Collectors.toList());
     }
 }
