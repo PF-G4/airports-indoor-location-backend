@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "vuelos")
@@ -40,8 +42,16 @@ public class Vuelo {
 	private StateFlight stateFlight;
 
     @ManyToOne
-    @JoinColumn(name = "destination_id") // o destination_id ?
+    @JoinColumn(name = "destination_id")
 	private Location destination;
+
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			},
+			mappedBy = "flights")
+    private Set<User> users;
 
     public Vuelo() {
     }
@@ -50,6 +60,7 @@ public class Vuelo {
 		this.number = number;
 		this.boardingDateTime = boardingDateTime;
 		this.boardingGate = boardingGate;
+		this.users = new HashSet<>();
 	}
 	
 	public Long getId() {
@@ -114,5 +125,15 @@ public class Vuelo {
 
 	public StateFlight getStateFlight() {
 		return stateFlight;
+	}
+
+	@JsonIgnore
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	@JsonProperty
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 }
