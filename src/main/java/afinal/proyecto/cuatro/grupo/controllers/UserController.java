@@ -2,6 +2,8 @@ package afinal.proyecto.cuatro.grupo.controllers;
 
 import java.io.IOException;
 
+import afinal.proyecto.cuatro.grupo.api.FlightByUserDto;
+import afinal.proyecto.cuatro.grupo.api.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,8 +49,14 @@ public class UserController {
 	
 	@RequestMapping(value = "/login" ,method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public User login(@RequestBody User user) throws IOException {
+	public LoginResponse login(@RequestBody User user) throws IOException {
 		return userService.login(user);
+	}
+
+	@RequestMapping(value = "/vuelo", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public void saveFlightByUser(@RequestBody  FlightByUserDto request) {
+		userService.flightByUser(request);
 	}
 
 }

@@ -2,6 +2,8 @@ package afinal.proyecto.cuatro.grupo.services;
 
 import java.io.IOException;
 
+import afinal.proyecto.cuatro.grupo.api.FlightByUserDto;
+import afinal.proyecto.cuatro.grupo.api.LoginResponse;
 import org.springframework.stereotype.Service;
 
 import afinal.proyecto.cuatro.grupo.entities.User;
@@ -17,6 +19,7 @@ public interface UserService {
 	
 	void delete(User user);
 
-	User login(User user) throws IOException;
+	LoginResponse login(User user) throws IOException;
 
+	void flightByUser(FlightByUserDto request);
 }
