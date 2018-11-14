@@ -2,6 +2,8 @@ package afinal.proyecto.cuatro.grupo.services.impl;
 
 import java.io.IOException;
 
+import afinal.proyecto.cuatro.grupo.api.FlightByUserDto;
+import afinal.proyecto.cuatro.grupo.api.LoginResponse;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,6 @@ public class UserServiceImpl implements UserService {
 			if (e.getCause() != null && e.getCause() instanceof ConstraintViolationException) {
 				throw new UserDuplicateEmailException(user.getEmail());
 			}
-//			if (ServiceUtil.isConstraintName("unique_email", e)) throw new UserDuplicateEmailException(user.getEmail());
 		}
 	}
 
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User login(User aUser) throws IOException {
+	public LoginResponse login(User aUser) throws IOException {
 		User user = daoUser.findByEmail(aUser.getEmail());
 		if (user == null) {
 			throw new UserNotFoundException("email", aUser.getEmail());
@@ -56,7 +57,16 @@ public class UserServiceImpl implements UserService {
 		if (!user.getPassword().equals(aUser.getPassword())) {
 			throw new UserLoginInvalidPassword(aUser.getEmail());
 		}
-		return user;
+		return new LoginResponse(user.getId());
 	}
 
+	@Override
+	public void flightByUser(FlightByUserDto request) {
+		User user = daoUser.findByEmail(request.getEmail());
+		if (user == null) {
+			throw new UserNotFoundException("email", request.getEmail());
+		}
+		user.getFlights().addAll(request.getFlights());
+		saveOrUpdate(user);
+	}
 }
