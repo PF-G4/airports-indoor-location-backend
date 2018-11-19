@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import afinal.proyecto.cuatro.grupo.dao.DaoFlowAnalysis;
 import afinal.proyecto.cuatro.grupo.entities.FlowAnalysis;
-//import afinal.proyecto.cuatro.grupo.exceptions.FlowAnalysisNotFoundException;
 import afinal.proyecto.cuatro.grupo.services.FlowAnalysisService;
 
 
@@ -22,6 +21,12 @@ public class FlowAnalysisServiceImpl implements FlowAnalysisService {
 		} catch (Exception e) {
 			System.out.println("[ERROR] " + e);
 		}
+	}
+	
+	@Override
+	public Iterable<FlowAnalysis> findAll() {
+		Iterable<FlowAnalysis> flowAnalysis = daoFlowAnalysis.findAll();
+		return flowAnalysis;
 	}
 
 }

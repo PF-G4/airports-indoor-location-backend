@@ -19,6 +19,12 @@ public class FlowAnalysisController {
 	public void saveOrUpdate(@RequestBody FlowAnalysis flowAnalysis) {
 		flowAnalysisService.saveOrUpdate(flowAnalysis);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public Iterable<FlowAnalysis> findAll() {
+		return flowAnalysisService.findAll();
+	}
 
 		
 
