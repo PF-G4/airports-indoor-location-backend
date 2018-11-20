@@ -13,15 +13,24 @@ public class FlowAnalysis {
 	private Long id;
 
 	@NotNull
-	private String id_usuario;
+	private Long idUsuario;
 
 	@NotNull
-	private String momento_posicion;
+	private String momentoPosicion;
 
 	@NotNull
 	private String zone;
 
-	
+	public FlowAnalysis(Long idUsuario, String momentoPosicion, String zone) {
+		this.idUsuario = idUsuario;
+		this.momentoPosicion = momentoPosicion;
+		this.zone = zone;
+	}
+
+	public FlowAnalysis() {
+		
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -30,20 +39,20 @@ public class FlowAnalysis {
 		this.id = id;
 	}
 
-	public String getId_usuario() {
-		return id_usuario;
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId_usuario(String id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public String getMomento_posicion() {
-		return momento_posicion;
+	public String getMomentoPosicion() {
+		return momentoPosicion;
 	}
 
-	public void setMomento_posicion(String momento_posicion) {
-		this.momento_posicion = momento_posicion;
+	public void setMomentoPosicion(String momentoPosicion) {
+		this.momentoPosicion = momentoPosicion;
 	}
 
 	public String getZone() {
@@ -53,15 +62,4 @@ public class FlowAnalysis {
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
-
-	public FlowAnalysis() {
-	}
-
-	public FlowAnalysis(String name, String position, String zone) {
-		this.id_usuario = name;
-		this.momento_posicion = position;
-		this.zone = zone;
-		
-	}
-
 }
