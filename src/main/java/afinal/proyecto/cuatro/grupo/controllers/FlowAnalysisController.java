@@ -1,11 +1,15 @@
 
 package afinal.proyecto.cuatro.grupo.controllers;
 
+import afinal.proyecto.cuatro.grupo.api.ResponsePeopleQuantity;
 import afinal.proyecto.cuatro.grupo.entities.FlowAnalysis;
 import afinal.proyecto.cuatro.grupo.services.FlowAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/flowAnalysis")
@@ -26,6 +30,12 @@ public class FlowAnalysisController {
 		return flowAnalysisService.findAll();
 	}
 
-		
+	@RequestMapping(method = RequestMethod.GET, value="/peopleQuantity")
+	@ResponseStatus(value = HttpStatus.OK)
+	public ResponsePeopleQuantity peopleQuantity(@RequestParam(value = "zone", defaultValue = "") String zone,
+												 @RequestParam(value = "since", defaultValue = "")  String since,
+												 @RequestParam(value = "until", defaultValue = "") String until) {
+		return flowAnalysisService.peopleQuantity(zone, since, until);
+	}
 
 }
