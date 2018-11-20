@@ -3,6 +3,7 @@ package afinal.proyecto.cuatro.grupo.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "flow_analysis")
@@ -16,19 +17,35 @@ public class FlowAnalysis {
 	private Long idUsuario;
 
 	@NotNull
-	private String momentoPosicion;
+	private Date momentoPosicion;
 
 	@NotNull
 	private String zone;
 
-	public FlowAnalysis(Long idUsuario, String momentoPosicion, String zone) {
+	public FlowAnalysis() {
+
+	}
+
+	public FlowAnalysis(Long idUsuario, Date momentoPosicion, String zone) {
 		this.idUsuario = idUsuario;
 		this.momentoPosicion = momentoPosicion;
 		this.zone = zone;
 	}
 
-	public FlowAnalysis() {
-		
+	public Date getMomentoPosicion() {
+		return momentoPosicion;
+	}
+
+	public void setMomentoPosicion(Date momentoPosicion) {
+		this.momentoPosicion = momentoPosicion;
+	}
+
+	public String getZone() {
+		return zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
 	}
 
 	public Long getId() {
@@ -45,21 +62,5 @@ public class FlowAnalysis {
 
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public String getMomentoPosicion() {
-		return momentoPosicion;
-	}
-
-	public void setMomentoPosicion(String momentoPosicion) {
-		this.momentoPosicion = momentoPosicion;
-	}
-
-	public String getZone() {
-		return zone;
-	}
-
-	public void setZone(String zone) {
-		this.zone = zone;
 	}
 }

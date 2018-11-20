@@ -5,6 +5,8 @@ import afinal.proyecto.cuatro.grupo.entities.FlowAnalysis;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public interface FlowAnalysisService {
 
@@ -12,4 +14,5 @@ public interface FlowAnalysisService {
 	
 	Iterable<FlowAnalysis> findAll();
 
+	int peopleQuantity(String zone, Date since, Date until);
 }

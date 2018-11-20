@@ -7,6 +7,8 @@ import afinal.proyecto.cuatro.grupo.dao.DaoFlowAnalysis;
 import afinal.proyecto.cuatro.grupo.entities.FlowAnalysis;
 import afinal.proyecto.cuatro.grupo.services.FlowAnalysisService;
 
+import java.util.Date;
+
 
 @Service
 public class FlowAnalysisServiceImpl implements FlowAnalysisService {
@@ -27,6 +29,12 @@ public class FlowAnalysisServiceImpl implements FlowAnalysisService {
 	public Iterable<FlowAnalysis> findAll() {
 		Iterable<FlowAnalysis> flowAnalysis = daoFlowAnalysis.findAll();
 		return flowAnalysis;
+	}
+
+	@Override
+	public int peopleQuantity(String zone, Date since, Date until) {
+		//return daoFlowAnalysis.peopleQuantity(zone, since, until);
+		return 0;
 	}
 
 }
