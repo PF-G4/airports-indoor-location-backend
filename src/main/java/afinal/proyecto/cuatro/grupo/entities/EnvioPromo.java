@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "envio_promocion")
-public class EnvioPromo {
+public class EnvioPromo { //Notificaciones: promociones y tiempo de vuelo
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +17,6 @@ public class EnvioPromo {
 	@NotNull
 	private Date momentoEnvio;
 
-	@NotNull
 	private String beacon;
 	
 	@NotNull
@@ -74,7 +73,6 @@ public class EnvioPromo {
 		this.textoMultiuso = textoMultiuso;
 	}
 
-	
 
 	public EnvioPromo(Long idUsuario, Date momentoEnvio, String beacon, Integer flagPromo, String textoMultiuso) {
 		this.idUsuario = idUsuario;
