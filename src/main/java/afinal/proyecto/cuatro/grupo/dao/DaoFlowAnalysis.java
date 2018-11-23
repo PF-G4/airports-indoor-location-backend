@@ -5,9 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import javax.persistence.PersistenceContext;
-import java.util.Date;
-
 public interface DaoFlowAnalysis extends CrudRepository<FlowAnalysis, Long> {
 
     @Query("select count(distinct f.idUsuario) from FlowAnalysis f where f.zone = :zone and f.momentoPosicion >= :since and f.momentoPosicion < :until")
