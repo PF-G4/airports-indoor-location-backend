@@ -1,15 +1,11 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
 import afinal.proyecto.cuatro.grupo.api.ResponsePeopleQuantity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import afinal.proyecto.cuatro.grupo.dao.DaoFlowAnalysis;
 import afinal.proyecto.cuatro.grupo.entities.FlowAnalysis;
 import afinal.proyecto.cuatro.grupo.services.FlowAnalysisService;
-
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 @Service
