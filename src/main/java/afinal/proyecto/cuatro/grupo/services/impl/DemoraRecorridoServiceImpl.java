@@ -89,10 +89,12 @@ public class DemoraRecorridoServiceImpl implements DemoraRecorridoService {
     private Vuelo getProximityFlight(Set<Vuelo> flights) {
         if (flights.isEmpty())
             throw new RuntimeException("No flights associated for user");
-        return flights.stream().sorted(Comparator.comparing(Vuelo::getBoardingDateTime))
+        List<Vuelo> flightsInFuture = flights.stream().sorted(Comparator.comparing(Vuelo::getBoardingDateTime))
                 .filter(flight -> flight.getBoardingDateTime().after(new Date())) //que el date sea mayor al dia de hoy (el vuelo no haya sido volado)
-                .collect(Collectors.toList())
-                .get(0);
+                .collect(Collectors.toList());
+        if (flightsInFuture.isEmpty())
+            throw new RuntimeException("No flights in the future for the user.");
+        return flightsInFuture.get(0);
 
     }
 }
