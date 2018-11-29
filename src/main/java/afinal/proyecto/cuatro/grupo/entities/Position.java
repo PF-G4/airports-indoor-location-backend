@@ -51,4 +51,12 @@ public class Position {
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("[userID=%s, momentoPosicion=%s, zone=%s]",
+				userID,
+				momentoPosicion,
+				zone);
+	}
 }

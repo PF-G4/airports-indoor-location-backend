@@ -57,6 +57,8 @@ public class DemoraRecorridoServiceImpl implements DemoraRecorridoService {
     @Override
     public Double getDemoraRecorrido(Long idUser) {
 
+        logger.info(String.format("[%s] Search DemoraRecorrido for idUser=%s", this.getClass().getSimpleName(), idUser));
+
         User user = daoUser.findById(idUser)
                 .orElseThrow(() -> new UserNotFoundException("id", idUser));
 
@@ -66,9 +68,10 @@ public class DemoraRecorridoServiceImpl implements DemoraRecorridoService {
         String[] coordenadaOrigen = positionOrigen.split("/");
 
         Vuelo flight = getProximityFlight(user.getFlights());
-        String beaconTag = flight.getBoardingGate().getBeaconTag();
+        logger.info(String.format("[%s] LastPosition is %s. First flight to search destination is %s", this.getClass().getSimpleName(), lastPosition, flight));
+        String beaconTagDestino = flight.getBoardingGate().getBeaconTag();
 
-        String positionDestino = positionWayFindingByBeaconTag.get(beaconTag);
+        String positionDestino = positionWayFindingByBeaconTag.get(beaconTagDestino);
         String[] coordenadaDestino = positionDestino.split("/");
 
         List<Node> nodesResult = wayFindingService.getDestination(
@@ -77,6 +80,8 @@ public class DemoraRecorridoServiceImpl implements DemoraRecorridoService {
                 Double.parseDouble(coordenadaDestino[0]),
                 Double.parseDouble(coordenadaDestino[1])
         );
+
+        logger.info(String.format("[%s] WayFound for %s to %s : %s", this.getClass().getSimpleName(), lastPosition.getZone(), beaconTagDestino, nodesResult));
 
         Double result = 0.0;
         for (Node node: nodesResult) {

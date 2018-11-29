@@ -7,9 +7,6 @@ import javax.persistence.*;
 public class TiempoPromedioZona {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column
     private String zona;
 
@@ -23,14 +20,6 @@ public class TiempoPromedioZona {
     public TiempoPromedioZona(String zona, Double tiempoProm) {
         this.zona = zona;
         this.tiempoProm = tiempoProm;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getZona() {

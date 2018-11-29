@@ -150,4 +150,12 @@ public class Vuelo {
 	public void setBoardingGateNumber(Integer boardingGateNumber) {
 		this.boardingGateNumber = boardingGateNumber;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("[BoardingGateNumber=%s, Destination=%s, BoardingDateTime=%s]",
+				boardingGate.getNumber(),
+				destination.getAbreviature(),
+				boardingDateTime);
+	}
 }
