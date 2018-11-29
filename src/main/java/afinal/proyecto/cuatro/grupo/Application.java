@@ -4,6 +4,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -15,6 +17,12 @@ public class Application  {
 
     @Autowired
     DataSource dataSource;
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization() {
+        return jacksonObjectMapperBuilder ->
+                jacksonObjectMapperBuilder.timeZone(TimeZone.getTimeZone("America/Argentina/Buenos_Aires"));
+    }
 
     @PostConstruct
     public void init(){
