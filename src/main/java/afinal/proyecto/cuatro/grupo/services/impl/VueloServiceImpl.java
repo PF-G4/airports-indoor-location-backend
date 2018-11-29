@@ -1,5 +1,7 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
+import afinal.proyecto.cuatro.grupo.dao.DaoBoardingGate;
+import afinal.proyecto.cuatro.grupo.entities.*;
 import afinal.proyecto.cuatro.grupo.exceptions.*;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,6 @@ import org.springframework.stereotype.Service;
 import afinal.proyecto.cuatro.grupo.dao.DaoLocation;
 import afinal.proyecto.cuatro.grupo.dao.DaoStateFlight;
 import afinal.proyecto.cuatro.grupo.dao.DaoVuelo;
-import afinal.proyecto.cuatro.grupo.entities.Location;
-import afinal.proyecto.cuatro.grupo.entities.StateFlight;
-import afinal.proyecto.cuatro.grupo.entities.StateFlightEnum;
-import afinal.proyecto.cuatro.grupo.entities.Vuelo;
 import afinal.proyecto.cuatro.grupo.services.VueloService;
 
 @Service
@@ -26,10 +24,14 @@ public class VueloServiceImpl implements VueloService {
 	@Autowired
 	private DaoLocation daoLocation;
 
+	@Autowired
+	private DaoBoardingGate daoBoardingGate;
+
 	@Override
 	public void saveOrUpdate(Vuelo vuelo) {
 		validateStateFlightId(vuelo);
 		validateDestinationId(vuelo);
+		validateBoardingGateNumber(vuelo);
 		try {
 			daoVuelo.save(vuelo);
 		} catch (Exception e) {
@@ -73,5 +75,12 @@ public class VueloServiceImpl implements VueloService {
 		Location destination = daoLocation.findById(
 				vuelo.getDestinationId()).orElseThrow(() -> new DestinationNotFoundException("id", vuelo.getDestinationId()));
 		vuelo.setDestination(destination);
+	}
+
+
+	private void validateBoardingGateNumber(Vuelo vuelo) {
+		BoardingGate boardingGate = daoBoardingGate.findBoardingGateByNumber(vuelo.getBoardingGateNumber())
+				.orElseThrow(() -> new BoardingGateNotFoundException("number", vuelo.getBoardingGateNumber()));
+		vuelo.setBoardingGate(boardingGate);
 	}
 }
