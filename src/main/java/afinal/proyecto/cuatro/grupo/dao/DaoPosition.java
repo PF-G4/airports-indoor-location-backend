@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 
 public interface DaoPosition extends CrudRepository<Position, Integer> {
 
-    @Query("select p from Position p where p.userID=:userID")
-    Position findUserById(@Param("userID") Long userID);
+    Optional<Position> findPositionByUserID(Long idUser);
 
 }

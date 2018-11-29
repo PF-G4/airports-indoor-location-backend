@@ -25,9 +25,13 @@ public class Vuelo {
 	@Column(name = "boarding_date_time")
 	private Date boardingDateTime;
 
-	@NotNull
-	@Column(name = "boarding_gate")
-	private Integer boardingGate;
+	@ManyToOne
+	@JoinColumn(name = "boarding_gate_id")
+	private BoardingGate boardingGate;
+
+	@Transient
+	@JsonIgnore
+	private Integer boardingGateNumber;
 
 	@Transient
 	@JsonIgnore
@@ -56,7 +60,7 @@ public class Vuelo {
     public Vuelo() {
     }
 
-	public Vuelo(String number, Date boardingDateTime, Integer boardingGate) {
+	public Vuelo(String number, Date boardingDateTime, BoardingGate boardingGate) {
 		this.number = number;
 		this.boardingDateTime = boardingDateTime;
 		this.boardingGate = boardingGate;
@@ -83,14 +87,6 @@ public class Vuelo {
 
 	public void setBoardingDateTime(Date boardingDateTime) {
 		this.boardingDateTime = boardingDateTime;
-	}
-
-	public Integer getBoardingGate() {
-		return boardingGate;
-	}
-
-	public void setBoardingGate(Integer boardingGate) {
-		this.boardingGate = boardingGate;
 	}
 
 	@JsonIgnore
@@ -135,5 +131,23 @@ public class Vuelo {
 	@JsonProperty
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	public BoardingGate getBoardingGate() {
+		return boardingGate;
+	}
+
+	public void setBoardingGate(BoardingGate boardingGate) {
+		this.boardingGate = boardingGate;
+	}
+
+	@JsonIgnore
+	public Integer getBoardingGateNumber() {
+		return boardingGateNumber;
+	}
+
+	@JsonProperty
+	public void setBoardingGateNumber(Integer boardingGateNumber) {
+		this.boardingGateNumber = boardingGateNumber;
 	}
 }

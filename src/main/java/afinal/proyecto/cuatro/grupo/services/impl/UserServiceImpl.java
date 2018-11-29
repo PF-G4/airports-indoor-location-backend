@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import afinal.proyecto.cuatro.grupo.api.FlightByUserDto;
 import afinal.proyecto.cuatro.grupo.api.LoginResponse;
+import afinal.proyecto.cuatro.grupo.services.VueloService;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private DaoUser daoUser;
+
+	@Autowired
+	private VueloService vueloService;
 	
 	@Override
 	public void saveOrUpdate(User user) {
@@ -66,6 +70,11 @@ public class UserServiceImpl implements UserService {
 		if (user == null) {
 			throw new UserNotFoundException("email", request.getEmail());
 		}
+
+		request.getFlights().stream().forEach(flight -> {
+			vueloService.saveOrUpdate(flight);
+		});
+
 		user.getFlights().addAll(request.getFlights());
 		saveOrUpdate(user);
 	}
