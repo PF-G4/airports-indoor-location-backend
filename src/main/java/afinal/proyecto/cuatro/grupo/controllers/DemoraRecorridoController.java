@@ -1,5 +1,6 @@
 package afinal.proyecto.cuatro.grupo.controllers;
 
+import afinal.proyecto.cuatro.grupo.api.ResponseDemoraRecorrido;
 import afinal.proyecto.cuatro.grupo.services.DemoraRecorridoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +15,8 @@ public class DemoraRecorridoController {
 
     @RequestMapping(method = RequestMethod.GET, value = {"/{idUser}"})
     @ResponseStatus(value = HttpStatus.OK)
-    public Double getDemoraRecorrido(@PathVariable(value = "idUser") Long idUser) {
-        return demoraRecorridoService.getDemoraRecorrido(idUser);
+    public ResponseDemoraRecorrido getDemoraRecorrido(@PathVariable(value = "idUser") Long idUser) {
+        return new ResponseDemoraRecorrido(demoraRecorridoService.getDemoraRecorrido(idUser));
     }
 
 }
