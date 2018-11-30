@@ -20,6 +20,7 @@ RUN apk add --update wget tzdata && \
   tar -zxvf "apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
   mv "apache-maven-$MAVEN_VERSION" "$M2_HOME" && \
   ln -s "$M2_HOME/bin/mvn" /usr/bin/mvn && \
+  rm -rf /etc/localtime && \
   ln -s /usr/share/zoneinfo/America/Buenos_Aires /etc/localtime && \
   apk del wget && \
   rm /tmp/* /var/cache/apk/*
