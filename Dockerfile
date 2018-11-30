@@ -7,19 +7,20 @@ ENV APP_PATH=/opt/backend
 ENV MAVEN_VERSION="3.2.5" \
     M2_HOME=/usr/lib/mvn
 
-COPY /home/fwelschen/localtime /etc/
+
 
 
 RUN mkdir -p /opt/backend
 COPY . /opt/backend
 WORKDIR /opt/backend
 
-RUN apk add --update wget && \
+RUN apk add --update wget tzdata && \
   cd /tmp && \
   wget "http://ftp.unicamp.br/pub/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
   tar -zxvf "apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
   mv "apache-maven-$MAVEN_VERSION" "$M2_HOME" && \
   ln -s "$M2_HOME/bin/mvn" /usr/bin/mvn && \
+  ln -s /usr/share/zoneinfo/America/Buenos_Aires /etc/localtime \
   apk del wget && \
   rm /tmp/* /var/cache/apk/*
 
