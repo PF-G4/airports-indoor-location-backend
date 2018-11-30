@@ -7,7 +7,7 @@ ENV APP_PATH=/opt/backend
 ENV MAVEN_VERSION="3.2.5" \
     M2_HOME=/usr/lib/mvn
 
-COPY /home/fwelschen/Buenos_Aires /etc/localtime
+COPY /home/fwelschen/localtime /etc/
 
 
 RUN mkdir -p /opt/backend
