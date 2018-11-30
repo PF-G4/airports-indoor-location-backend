@@ -16,7 +16,7 @@ public class DemoraRecorridoController {
     @RequestMapping(method = RequestMethod.GET, value = {"/{idUser}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseDemoraRecorrido getDemoraRecorrido(@PathVariable(value = "idUser") Long idUser) {
-        return new ResponseDemoraRecorrido(demoraRecorridoService.getDemoraRecorrido(idUser));
+        return demoraRecorridoService.getDemoraRecorrido(idUser);
     }
 
 }
