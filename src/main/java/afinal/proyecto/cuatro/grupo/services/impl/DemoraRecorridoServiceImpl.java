@@ -1,5 +1,6 @@
 package afinal.proyecto.cuatro.grupo.services.impl;
 
+import afinal.proyecto.cuatro.grupo.api.ResponseDemoraRecorrido;
 import afinal.proyecto.cuatro.grupo.dao.DaoUser;
 import afinal.proyecto.cuatro.grupo.entities.*;
 import afinal.proyecto.cuatro.grupo.exceptions.UserNotFoundException;
@@ -55,7 +56,7 @@ public class DemoraRecorridoServiceImpl implements DemoraRecorridoService {
     }
 
     @Override
-    public Double getDemoraRecorrido(Long idUser) {
+    public ResponseDemoraRecorrido getDemoraRecorrido(Long idUser) {
 
         logger.info(String.format("[%s] Search DemoraRecorrido for idUser=%s", this.getClass().getSimpleName(), idUser));
 
@@ -88,7 +89,7 @@ public class DemoraRecorridoServiceImpl implements DemoraRecorridoService {
             result += tiempoPromedioZonaService.tiempoPromedioZona(node.getValue()).getTiempoProm();
         }
 
-        return result;
+        return new ResponseDemoraRecorrido(result, flight);
     }
 
     private Vuelo getProximityFlight(Set<Vuelo> flights) {
