@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @RestController
 @RequestMapping("/flowAnalysis")
 public class FlowAnalysisController {
@@ -31,7 +33,7 @@ public class FlowAnalysisController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public ResponsePeopleQuantity peopleQuantity(@RequestParam(value = "zone", defaultValue = "") String zone,
 												 @RequestParam(value = "since", defaultValue = "")  String since,
-												 @RequestParam(value = "until", defaultValue = "") String until) {
+												 @RequestParam(value = "until", defaultValue = "") String until) throws ParseException {
 		return flowAnalysisService.peopleQuantity(zone, since, until);
 	}
 }
